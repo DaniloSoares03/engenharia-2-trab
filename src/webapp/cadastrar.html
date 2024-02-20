@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5">Cadastro de Alunos</h2>
+    <form id="cadastroForm">
+        <div class="form-group">
+            <label for="ra">RA:</label>
+            <input type="text" class="form-control" id="ra" name="ra" required>
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#cadastroForm').submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: '../../target/classes/modelo/', // Caminho para o servlet que irá processar o formulário
+                data: formData,
+                success: function(response) {
+                    alert('Aluno cadastrado com sucesso!');
+                    // Limpar os campos do formulário após o cadastro
+                    $('#ra').val('');
+                    $('#nome').val('');
+                },
+                error: function(xhr, status, error) {
+                    alert('Ocorreu um erro ao cadastrar o aluno. Por favor, tente novamente.');
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
