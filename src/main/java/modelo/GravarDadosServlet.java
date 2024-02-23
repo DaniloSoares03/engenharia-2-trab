@@ -22,7 +22,7 @@ public class GravarDadosServlet extends HttpServlet {
         // Configuração da conexão com o banco de dados
         String url = "/var/lib/postgresql/16/main";
         String usuario = "postgres";
-        String senha = "alexandria";
+        String senha = "senha";
 
         try {
             // Conexão com o banco de dados
